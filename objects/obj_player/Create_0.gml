@@ -42,4 +42,8 @@ record_pos = [x, y]
 z = 0;
 z_speed = 0;
 
+//Health
+cur_health = 100;
+visual_health = 100;
+
 image_speed = 0;

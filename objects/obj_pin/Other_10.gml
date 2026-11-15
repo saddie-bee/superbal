@@ -7,9 +7,9 @@ sprite_index = spr_pin;
 if (timer >= 128){
 	
 	if (count < 5){
-		state = 1;
+		state = 2;
 		timer = 0;
-		z_speed = 14;
+		//z_speed = 14;
 		grounded = 0;
 	} else {
 		state = 2;

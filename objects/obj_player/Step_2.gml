@@ -6,3 +6,5 @@ var _dist = sign(_pythstore) * sqrt(abs(_pythstore));
 
 frame += abs(_dist) * 0.1;
 frame = frame mod 15;
+
+visual_health += (cur_health - visual_health) * 0.2;

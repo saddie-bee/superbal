@@ -1,0 +1,1 @@
+depth = obj_pin.depth + 40;

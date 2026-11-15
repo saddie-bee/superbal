@@ -10,12 +10,20 @@ if ((-0.5 * obj_player.x + (y - -0.5 * x + 96)) < obj_player.y){
 	depth = obj_player.depth + 1
 }
 
-if (place_meeting(x, y, obj_player) && !bounce_cooldown && _cancollide) {
+if (place_meeting(x, y, obj_player) && !bounce_cooldown && _cancollide && grounded) {
 	with (obj_player){
 		var _pythstore = (sqr(x - record_pos[1]) + sqr((y - record_pos[2])) * 4);
 		var _dist = sign(_pythstore) * sqrt(abs(_pythstore));
 		x_speed *= -1.5;
 		y_speed *= -1.5;
+		
+		instance_create_depth(x + x_speed + random_range(-8, 8), y + y_speed + random_range(-8, 8), depth - 1, obj_dust_effect);
+		
+		if (other.state == 0 && !grounded){
+			other.cur_health -= 25;
+		} else {
+			cur_health -= 5;
+		}
 		
 		if (abs(x_speed) < 3){
 			x_speed = sign(x_speed) * 3;
@@ -25,22 +33,40 @@ if (place_meeting(x, y, obj_player) && !bounce_cooldown && _cancollide) {
 			y_speed = sign(y_speed) * 3;
 		}
 		
-		control_lock = true;
+		//control_lock = true;
 	}
 	
 	bounce_cooldown = 1;
 }
 
 if (bounce_cooldown){
-	obj_player.x_speed *= 1.5;
-	obj_player.y_speed *= 1.5;
+	
+	with (obj_player){
+		x_speed *= 1.5;
+		y_speed *= 1.5;
 			
-	if (abs(obj_player.x_speed) < 3){
-		obj_player.x_speed = sign(obj_player.x_speed) * 3;
-	}
+		grounded = true;	
+			
+		if (abs(x_speed) < 6){
+			x_speed = sign(x_speed) * 6;
+			if (x_speed == 0){
+				x_speed = 6;
+			}
+			
+			x += x_speed;
 		
-	if (abs(obj_player.y_speed) < 3){
-		obj_player.y_speed = sign(obj_player.y_speed) * 3;
+		}
+		
+		show_debug_message(x_speed);
+		
+		if (abs(y_speed) < 6){
+			y_speed = sign(y_speed) * 6;
+			if (y_speed == 0){
+				y_speed = 6;
+			}
+			
+			y += y_speed;
+		}
 	}
 }
 
@@ -57,20 +83,20 @@ z += z_speed;
 if (z < 0){
 	if (abs(z_speed) >= 4){
 		
-		repeat(2){
-			instance_create_depth(x + random_range(12, 18), y + 96 + random_range(-8, 8), depth + 4, obj_dust_effect);
+		repeat(4){
+			instance_create_depth(x + random_range(12, 18), y + 80 + random_range(-8, 8), depth - 444, obj_dust_effect);
 		}
 	
-		repeat(2){
-			instance_create_depth(x + random_range(-12, -18), y + 96 + random_range(-8, 8), depth + 4, obj_dust_effect);
+		repeat(4){
+			instance_create_depth(x + random_range(-12, -18), y + 80 + random_range(-8, 8), depth - 444, obj_dust_effect);
 		}
 	
-		repeat(2){
-			instance_create_depth(x + random_range(-8, 8), y + 96 + random_range(12, 18), depth + 4, obj_dust_effect);
+		repeat(4){
+			instance_create_depth(x + random_range(-8, 8), y + 80 + random_range(12, 18), depth - 444, obj_dust_effect);
 		}
 	
-		repeat(2){
-			instance_create_depth(x + random_range(-8, 8), y + 96 + random_range(-12, -18), depth + 4, obj_dust_effect);
+		repeat(4){
+			instance_create_depth(x + random_range(-8, 8), y + 80 + random_range(-12, -18), depth - 444, obj_dust_effect);
 		}
 	
 	}
@@ -83,5 +109,7 @@ if (z < 0){
 	
 	z = z_speed;
 }
+
+visual_health += (cur_health - visual_health) * 0.2;
 
 event_user(state);

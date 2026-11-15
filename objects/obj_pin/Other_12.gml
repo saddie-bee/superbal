@@ -29,6 +29,10 @@ if (timer >= 24){
 	}
 	frame += spin_vel;
 	
+	if (spin_vel > 0.05){
+		instance_create_depth(x + 64 + 108 * dsin(floor(frame + 2) * (320/17)) + random_range(-16, 16), y + 128 + 80* dcos(floor(frame + 2) * (320/17)) + random_range(-16, 16), depth - 4, obj_dust_effect);
+	}
+	
 	if (frame >= 17){
 		frame = 0;
 	}
