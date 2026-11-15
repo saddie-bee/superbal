@@ -1,6 +1,16 @@
 //Player bounce
 var _cancollide = true;
 
+if (obj_player.cur_health <= 0){
+	if (obj_player.player_defeated = false){
+		obj_player.y_speed = -14;
+		obj_player.camera_shake = 40;
+		audio_play_sound(sfx_test, 1, false);
+		obj_player.player_defeated = true;
+	}
+	exit;
+}
+
 if ((-0.5 * obj_player.x + (y - -0.5 * x + 64)) > obj_player.y){
 	_cancollide = false;
 	depth = obj_player.depth - 1;
@@ -19,8 +29,20 @@ if (place_meeting(x, y, obj_player) && !bounce_cooldown && _cancollide && ground
 		
 		instance_create_depth(x + x_speed + random_range(-8, 8), y + y_speed + random_range(-8, 8), depth - 1, obj_dust_effect);
 		
+		camera_shake = 20;
+		
 		if (other.state == 0 && !grounded){
 			other.cur_health -= 25;
+			
+			if z_speed != 0{
+				audio_play_sound(Boss_Hit_2, 1, false);
+			}
+			
+			if (other.cur_health <= 0){
+				room_goto(Ending);
+			}
+			
+			instance_create_depth(x + x_speed + random_range(-8, 8), y + y_speed + random_range(-8, 8), depth - 1, obj_dust_effect);
 		} else {
 			cur_health -= 5;
 		}
@@ -57,7 +79,6 @@ if (bounce_cooldown){
 		
 		}
 		
-		show_debug_message(x_speed);
 		
 		if (abs(y_speed) < 6){
 			y_speed = sign(y_speed) * 6;
@@ -83,6 +104,8 @@ z += z_speed;
 if (z < 0){
 	if (abs(z_speed) >= 4){
 		
+		obj_player.camera_shake = 20;
+		
 		repeat(4){
 			instance_create_depth(x + random_range(12, 18), y + 80 + random_range(-8, 8), depth - 444, obj_dust_effect);
 		}
@@ -105,6 +128,10 @@ if (z < 0){
 	
 	if floor (z_speed) == 0{
 		z_speed = 0;
+	}
+	
+	if z_speed != 0{
+		audio_play_sound(Chair_Bounce, 1, false);
 	}
 	
 	z = z_speed;

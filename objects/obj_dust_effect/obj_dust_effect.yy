@@ -31,7 +31,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_smoke",
+    "path":"sprites/spr_smoke/spr_smoke.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

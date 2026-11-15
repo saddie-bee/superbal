@@ -28,6 +28,7 @@ cam_display_h = cam_h;
 	
 cam_x = x;
 cam_y = y;
+camera_shake = 0;
 
 cam_spd = 0.1;
 
@@ -45,5 +46,8 @@ z_speed = 0;
 //Health
 cur_health = 100;
 visual_health = 100;
+player_defeated = false;
 
 image_speed = 0;
+
+audio_play_sound(boss, 1, true);

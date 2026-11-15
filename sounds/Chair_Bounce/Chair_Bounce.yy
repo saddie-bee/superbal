@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"Chair_Bounce",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":0.8294331,
+  "exportDir":"",
+  "name":"Chair_Bounce",
+  "parent":{
+    "name":"Sound",
+    "path":"folders/Sound.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"Chair_Bounce.wav",
+  "volume":1.0,
+}

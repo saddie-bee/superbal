@@ -1,3 +1,20 @@
+show_debug_message(y);
+
+
+if (player_defeated){
+	x += 1
+	y += y_speed
+	y_speed += gravity_force;
+	//image_xscale += 0.5;
+	//image_yscale += 0.5;
+	image_angle += 0.5;
+	
+	if (y_speed <= -10){
+		room_restart();
+	}
+	exit;
+}
+
 if (grounded){
 	player_state_movement();
 } else {
@@ -32,6 +49,10 @@ if (z < 0){
 	
 	if floor (z_speed) == 0{
 		z_speed = 0;
+	}
+	
+	if z_speed != 0{
+		audio_play_sound(Chair_Bounce, 1, false);
 	}
 	
 	z = z_speed;

@@ -9,6 +9,7 @@ if (timer < 12){
 	
 	if (timer == 12){
 		frame = 0;
+		obj_player.camera_shake = 40;
 	}
 }
 

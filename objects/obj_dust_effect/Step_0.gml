@@ -1,6 +1,6 @@
 frame += 1;
 
-if (frame >= 10){
+if (frame >= 14){
 	instance_destroy();
 }
 
