@@ -1,0 +1,1 @@
+draw_circle(640, 400, 32, false);

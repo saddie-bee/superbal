@@ -1,0 +1,14 @@
+function player_camera_movement(){
+	cam_x += ((obj_player.x + 16 * obj_player.x_speed - (cam_w / 2) - cam_x) * cam_spd);
+	cam_y += ((obj_player.y + 16 * obj_player.y_speed - (cam_h / 2) - cam_y) * cam_spd / 2);
+	
+	var _size = 0.075;
+	var _pythstore = (sqr(obj_player.x - record_pos[1]) + sqr((obj_player.y - record_pos[2])) * 4);
+	var _dist = max(1, _size * sign(_pythstore) * sqrt(abs(_pythstore)));
+	
+	cam_display_w += (((cam_w * _dist) - cam_display_w) * 0.01);
+	cam_display_h += (((cam_h * _dist) - cam_display_h) * 0.01);
+	
+	camera_set_view_pos(cam, cam_x, cam_y);
+	camera_set_view_size(cam, cam_display_w, cam_display_h);
+}
