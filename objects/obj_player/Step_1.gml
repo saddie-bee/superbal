@@ -7,4 +7,3 @@ press_jump = keyboard_check_pressed(ord("Z"))
 
 record_pos[1] = x;
 record_pos[2] = y;
-

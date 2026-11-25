@@ -42,6 +42,6 @@ if (grounded && count > 0){
 
 if (timer > 512){
 	state = 0;
-	timer = 0;
+	timer = -64;
 	count = 1;
 }

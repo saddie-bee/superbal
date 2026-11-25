@@ -8,3 +8,9 @@ frame += abs(_dist) * 0.1;
 frame = frame mod 15;
 
 visual_health += (cur_health - visual_health) * 0.2;
+
+
+if (keyboard_check(vk_space)){
+	audio_stop_all();
+	room_restart();
+}
